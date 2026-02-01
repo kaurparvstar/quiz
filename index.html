@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Just for You ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff0f5, #ffe5ec);
+      text-align: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 25px 22px;
+      border-radius: 16px;
+      max-width: 420px;
+      margin: 40px auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      animation: fadeIn 0.6s ease;
+    }
+
+    h2 {
+      font-weight: 600;
+      color: #c9184a;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      color: #c9184a;
+      font-weight: 500;
+    }
+
+    p {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 10px;
+      width: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    li {
+      background: #ffe5ec;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 14px;
+      margin-top: 15px;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: fall 3s linear infinite;
+      z-index: 999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box" id="step1">
+  <h2>Hey ❤️</h2>
+  <p>
+    Do you know Parvinder Kaur?  
+    I think you do — that’s your wife 😏  
+    Answer these questions honestly, samjhe?
+  </p>
+  <button onclick="nextStep()">Start</button>
+</div>
+
+<div class="box" id="step2" style="display:none;">
+  <p>Aapan dova vicho pehla propose kihne kita si?</p>
+  <button onclick="saveAnswer('Gurkirtan Singh')">Gurkirtan Singh</button>
+  <button onclick="saveAnswer('Parvinder Kaur')">Parvinder Kaur</button>
+</div>
+
+<div class="box" id="step3" style="display:none;">
+  <p>Be honest — kon sbto zada der tk naraz rehnda a?</p>
+  <button onclick="saveAnswer('Gurkirtan Singh')">Gurkirtan Singh</button>
+  <button onclick="saveAnswer('Parvinder Kaur')">Parvinder Kaur</button>
+</div>
+
+<div class="box" id="step4" style="display:none;">
+  <p>Kon sbto zada emotional a?</p>
+  <button onclick="saveAnswer('Gurkirtan Singh')">Gurkirtan Singh</button>
+  <button onclick="saveAnswer('Parvinder Kaur')">Parvinder Kaur</button>
+</div>
+
+<div class="box" id="step5" style="display:none;">
+  <p>Kon ladai khatam krn de bahane labhda a?</p>
+  <button onclick="saveAnswer('Gurkirtan Singh')">Gurkirtan Singh</button>
+  <button onclick="saveAnswer('Parvinder Kaur')">Parvinder Kaur</button>
+</div>
+
+<div class="box" id="step6" style="display:none;">
+  <p>Kihnu ghumna pasand a?</p>
+  <button onclick="saveAnswer('Gurkirtan Singh')">Gurkirtan Singh</button>
+  <button onclick="saveAnswer('Parvinder Kaur')">Parvinder Kaur</button>
+</div>
+
+<div class="box" id="step7" style="display:none;">
+  <p>Kon zada shopping karda?</p>
+  <button onclick="saveAnswer('Gurkirtan Singh')">Gurkirtan Singh</button>
+  <button onclick="saveAnswer('Parvinder Kaur')">Parvinder Kaur</button>
+</div>
+
+<div class="box" id="step8" style="display:none;">
+  <p>Kon pyaar da izhaar zada karda?</p>
+  <button onclick="saveAnswer('Gurkirtan Singh')">Gurkirtan Singh</button>
+  <button onclick="saveAnswer('Parvinder Kaur')">Parvinder Kaur</button>
+</div>
+
+<div class="box" id="step9" style="display:none;">
+  <p>Kihnu zada karna chahida pyaar da izhaar huh??? 😤</p>
+  <button onclick="saveAnswer('Gurkirtan Singh')">Gurkirtan Singh</button>
+  <button onclick="saveAnswer('Parvinder Kaur')">Parvinder Kaur</button>
+</div>
+
+<div class="box" id="step10" style="display:none;">
+  <h3>Your answers 😌</h3>
+  <ul id="answerList"></ul>
+  <button onclick="nextStep()">Continue</button>
+</div>
+
+<div class="box" id="step11" style="display:none;">
+  <h2>Will you be my Valentine? 💕</h2>
+  <p>Dekhlo… NO karke vi 😏</p>
+  <button onclick="yesClicked()">YES 💘</button>
+  <button onclick="noClicked()">NO 😐</button>
+</div>
+
+<div class="box" id="finalMessage" style="display:none;">
+  <h2>One more thing… 💞</h2>
+  <p>
+    Saying YES is easy 😌  
+    But being my Valentine means effort, time,
+    patience, and choosing us — every day.
+  </p>
+  <p>
+    So now that you said yes…  
+    show it too ❤️
+  </p>
+</div>
+
+<script>
+  let step = 1;
+  let answers = [];
+
+  function saveAnswer(answer) {
+    answers.push(answer);
+    nextStep();
+  }
+
+  function nextStep() {
+    document.getElementById("step" + step).style.display = "none";
+    step++;
+
+    if (step === 10) {
+      let list = document.getElementById("answerList");
+      answers.forEach(ans => {
+        let li = document.createElement("li");
+        li.textContent = ans;
+        list.appendChild(li);
+      });
+    }
+
+    document.getElementById("step" + step).style.display = "block";
+  }
+
+  function yesClicked() {
+    for (let i = 0; i < 120; i++) {
+      let conf = document.createElement("div");
+      conf.className = "confetti";
+      conf.style.left = Math.random() * 100 + "vw";
+      conf.style.backgroundColor =
+        ["#ff4d6d", "#ffb3c6", "#ffd6e0", "#cdb4db"][Math.floor(Math.random() * 4)];
+      conf.style.animationDuration = 2 + Math.random() * 3 + "s";
+      document.body.appendChild(conf);
+      setTimeout(() => conf.remove(), 5000);
+    }
+
+    document.getElementById("step11").style.display = "none";
+    document.getElementById("finalMessage").style.display = "block";
+  }
+
+  function noClicked() {
+    alert("EXCUSE ME??? 😤 Krava ke NO??? Pyaar Vyaar ni Rehgya ke?.");
+  }
+</script>
+
+</body>
+</html>
